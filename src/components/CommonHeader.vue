@@ -1,5 +1,5 @@
 <template>
-  <header id="header_container" class="clerafix">
+  <header id="header_container">
     <div class="header_left">
       <nav class="header_nav">
         <div class="nav_items" v-for="route in routes" :key="route.id">
@@ -83,6 +83,7 @@ $mobileHeight: 50px;
 
 #header_container {
   position: fixed;
+  margin-bottom: $pcHeight;
   display: flex;
   align-items: center;
   top: 0;
@@ -196,6 +197,7 @@ aside {
 
 @media screen and (max-width: 720px) {
   #header_container {
+    margin-bottom: $mobileHeight;
     height: $mobileHeight;
     line-height: $mobileHeight;
     .header_right {

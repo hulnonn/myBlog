@@ -17,7 +17,6 @@ export default {
 @import '@/style/_handle.scss';
 body {
   height: 2000px;
-  background: url('@/assets/banner-test.png') no-repeat;
   @include background_color('bg_color');
 }
 </style>

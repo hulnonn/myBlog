@@ -1,11 +1,13 @@
 <template>
   <div class="home">
-    <p>home</p>
+    <BannerComponent></BannerComponent>
   </div>
 </template>
 
 <script>
+import BannerComponent from '@/components/BannerComponent.vue'
 export default {
-  name: 'HomeView'
+  name: 'HomeView',
+  components: { BannerComponent }
 }
 </script>
