@@ -9,14 +9,16 @@ $themes: (
     font_color: #414141,
 
     //背景
-    bg_color: #f0f2f5
+    body_color: #f0f2f5,
+    item_color: #fff
   ),
   dark: (
     //字体
     font_color: #eeeaea,
 
     //背景
-    bg_color: #242629
+    body_color: #242629,
+    item_color: #2f3131
   )
 );
 //遍历主题map

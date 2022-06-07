@@ -16,7 +16,8 @@ export default {
 <style lang="scss">
 @import '@/style/_handle.scss';
 body {
+  transition: all 0.3s ease;
   height: 2000px;
-  @include background_color('bg_color');
+  @include background_color('body_color');
 }
 </style>

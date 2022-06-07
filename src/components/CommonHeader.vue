@@ -2,8 +2,8 @@
   <header id="header_container">
     <div class="header_left">
       <nav class="header_nav">
-        <div class="nav_items" v-for="route in routes" :key="route.id">
-          <router-link :to="route.path">{{route.title}}</router-link>
+        <div class="nav_items" v-for="r in routes" :key="r.id">
+          <router-link :to="r.path" :class="{active: $route.fullPath === r.path}">{{r.title}}</router-link>
         </div>
       </nav>
       <div class="search_input">
@@ -20,8 +20,8 @@
     <aside v-if="isMobile">
       <transition name="aside_nav_ani">
         <nav id="aside_nav" v-show="showAsideNav">
-          <div class="aside_nav_items" v-for="route in routes" :key="route.id">
-            <router-link :to="route.path">{{route.title}}</router-link>
+          <div class="aside_nav_items" v-for="r in routes" :key="r.id">
+            <router-link :to="r.path" :class="{active: $route.fullPath === r.path}">{{r.title}}</router-link>
           </div>
         </nav>
       </transition>
@@ -36,11 +36,11 @@ export default {
     return {
       routes: [
         { id: '000', path: '/', title: '首页' },
-        { id: '001', path: '/summary', title: '归档' },
-        { id: '002', path: '/tag', title: '首页' },
         { id: '003', path: '/note', title: '笔记' },
+        { id: '001', path: '/summary', title: '总结' },
+        { id: '002', path: '/tag', title: '标签' },
         { id: '004', path: '/life', title: '生活' },
-        { id: '005 ', path: '/trip', title: '旅程' },
+        { id: '005', path: '/trip', title: '旅程' },
         { id: '006', path: '/friends', title: '朋友' }
       ],
       isMobile: document.documentElement.clientWidth < 720,
@@ -55,6 +55,19 @@ export default {
   methods: {
     handleAsideNav() {
       this.showAsideNav = !this.showAsideNav
+      // 给 window 绑定点击事件，可以在展开nav 的情况下点击屏幕隐藏nav
+      if (window.onclick) {
+        window.onclick = false
+      } else {
+        setTimeout(() => {
+          window.onclick = () => {
+            if (this.showAsideNav) {
+              this.showAsideNav = false
+            }
+            window.onclick = false
+          }
+        })
+      }
     },
     changeColorTheme() {
       this.$store.commit('CHANGE_COLOR_THEME')
@@ -65,6 +78,7 @@ export default {
     }
   },
   created() {
+    console.log(this)
     window.addEventListener('resize', () => {
       const width = document.documentElement.clientWidth
       this.isMobile = width < 720
@@ -82,6 +96,7 @@ $pcHeight: 60px;
 $mobileHeight: 50px;
 
 #header_container {
+  transition: all 0.3s ease;
   position: fixed;
   margin-bottom: $pcHeight;
   display: flex;
@@ -90,7 +105,7 @@ $mobileHeight: 50px;
   width: 100vw;
   height: $pcHeight;
   line-height: $pcHeight;
-  @include background_color('bg_color');
+  @include background_color('body_color');
 
   .header_right {
     display: none;
@@ -126,8 +141,12 @@ $mobileHeight: 50px;
           margin-right: 20px;
         }
         a {
-          font-size: 16px;
+          font-size: 14px;
           @include font_color(font_color);
+          padding: 0 2px 4px;
+          &:hover {
+            border-bottom: 2px solid #04aa15;
+          }
         }
       }
     }
@@ -166,15 +185,15 @@ aside {
   right: 0;
   top: $pcHeight;
   #aside_nav {
-    width: 40vw;
-    @include background_color('bg_color');
+    width: 20vw;
+    @include background_color('body_color');
 
     .aside_nav_items {
       text-align: center;
 
       a {
         @include font_color(font_color);
-        font-weight: 700;
+        font-weight: 400;
       }
     }
   }
@@ -227,5 +246,8 @@ aside {
   aside {
     top: $mobileHeight;
   }
+}
+.active {
+  border-bottom: 2px solid #04aa15;
 }
 </style>
