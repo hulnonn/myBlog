@@ -21,10 +21,10 @@
         </div>
       </aside>
 
-      <div class="blogs-aside">
-        <div class="blogs">
+      <div class="articles-aside">
+        <div class="articles">
           <a href="#">
-            <div class="blog">
+            <div class="article">
               <h3>
                 <a href="#">关于我的博客</a>
               </h3>
@@ -34,41 +34,14 @@
             </div>
           </a>
         </div>
-        <div class="blogs">
-          <a href="#">
-            <div class="blog">
-              <h3>
-                <a href="#">关于我的博客</a>
-              </h3>
-              <p>2022-06-07</p>
-              <a class="tags">置顶</a>
-              <a class="tags tag-green">其它</a>
+        <div class="articles" v-for="d in articleDigests" :key="d.id">
+          <router-link :to="d.path">
+            <div class="article">
+              <h3>{{d.title}}</h3>
+              <p>{{d.createTime}}</p>
+              <a class="tags" v-for="tag in d.tags" :key="tag.title" :class="tag.color">{{tag.title}}</a>
             </div>
-          </a>
-        </div>
-        <div class="blogs">
-          <a href="#">
-            <div class="blog">
-              <h3>
-                <a href="#">关于我的博客</a>
-              </h3>
-              <p>2022-06-07</p>
-              <a class="tags">置顶</a>
-              <a class="tags tag-green">其它</a>
-            </div>
-          </a>
-        </div>
-        <div class="blogs">
-          <a href="#">
-            <div class="blog">
-              <h3>
-                <a href="#">关于我的博客</a>
-              </h3>
-              <p>2022-06-07</p>
-              <a class="tags">置顶</a>
-              <a class="tags tag-green">其它</a>
-            </div>
-          </a>
+          </router-link>
         </div>
       </div>
     </main>
@@ -79,27 +52,27 @@
 import BannerComponent from '@/components/BannerComponent.vue'
 import SimpleCloak from '@/components/SimpleCloak.vue'
 // API
-import { getBlogDigest } from '@/api/blog.js'
+import { getArticleDigest } from '@/api/article.js'
 export default {
   name: 'HomeView',
   data() {
     return {
-      blogDigests: []
+      articleDigests: []
     }
   },
   components: { BannerComponent, SimpleCloak },
   methods: {
-    async gainBlogDigest() {
+    async gainArticleDigest() {
       try {
-        const result = await getBlogDigest()
-        this.blogDigests = result.data
+        const result = await getArticleDigest()
+        this.articleDigests = result.data
       } catch (error) {
         console.log(error)
       }
     }
   },
   mounted() {
-    this.gainBlogDigest()
+    this.gainArticleDigest()
   }
 }
 </script>
@@ -147,7 +120,7 @@ $default_radius: 0.7rem;
       }
     }
 
-    .blogs {
+    .articles {
       transition: all 0.3s ease;
       flex-shrink: 0;
       width: 900px;
@@ -180,8 +153,12 @@ $default_radius: 0.7rem;
         }
 
         .tag-green {
-          background-color: #ece40d;
-          color: #400 !important;
+          background-color: #26d12f;
+          color: #fff !important;
+        }
+        .tag-yellow {
+          background-color: #fff94c;
+          color: #200 !important;
         }
       }
     }
@@ -196,7 +173,7 @@ $default_radius: 0.7rem;
       .home-aside {
         width: 94vw;
       }
-      .blogs {
+      .articles {
         width: 94vw;
         margin: 0 0 20px 0;
       }

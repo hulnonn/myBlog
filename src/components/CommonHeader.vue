@@ -36,8 +36,8 @@ export default {
     return {
       routes: [
         { id: '000', path: '/', title: '首页' },
-        { id: '003', path: '/note', title: '笔记' },
-        { id: '001', path: '/summary', title: '总结' },
+        { id: '003', path: '/article', title: '文章' },
+        { id: '001', path: '/writing', title: '写作' },
         { id: '002', path: '/tag', title: '标签' },
         { id: '004', path: '/life', title: '生活' },
         { id: '005', path: '/trip', title: '旅程' },
@@ -169,12 +169,13 @@ $mobileHeight: 50px;
       min-width: 100px;
       input {
         width: 92%;
-        height: 60%;
+        height: 55%;
         border: none;
         background: #414141 url('@/assets/icons/search.svg') no-repeat 5px center/25px;
         border-radius: 25px;
         color: #eeeaea;
-        padding-left: 30px;
+        padding: 0 10px 0 30px;
+        box-sizing: border-box;
         box-sizing: border-box;
         font-size: 14px;
         outline: none;

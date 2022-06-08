@@ -1,12 +1,12 @@
 <template>
   <div>
-    <p>NoteView</p>
+    <p>WritingView</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'NoteView'
+  name: 'WritingView'
 }
 </script>
 

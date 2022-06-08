@@ -10,19 +10,19 @@ const routes = [
     component: () => import('@/views/HomeView')
   },
   {
-    path: '/summary',
-    name: 'summary',
-    component: () => import('@/views/SummaryView')
+    path: '/article',
+    name: 'article',
+    component: () => import('@/views/ArticleView')
+  },
+  {
+    path: '/writing',
+    name: 'writing',
+    component: () => import('@/views/WritingView')
   },
   {
     path: '/tag',
     name: 'tag',
     component: () => import('@/views/TagView')
-  },
-  {
-    path: '/note',
-    name: 'note',
-    component: () => import('@/views/NoteView')
   },
   {
     path: '/life',
