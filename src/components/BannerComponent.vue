@@ -3,7 +3,7 @@
     <div class="slogan">
       <div class="avatar"></div>
       <div class="words">
-        <h1>欢迎来我的博客</h1>
+        <h1>欢迎来到我的博客</h1>
         <h3>Have a good time! Thanks</h3>
       </div>
     </div>
@@ -23,9 +23,8 @@ export default {
   align-items: center;
   width: 100%;
   height: 600px;
-  background: url('@/assets/banner-test.png') no-repeat center center/cover;
+  background: url('@/assets/banner1.png') no-repeat center center/cover;
   .slogan {
-    // height: 200px;
     display: flex;
     justify-content: space-between;
     .avatar {

@@ -10,7 +10,8 @@ $themes: (
 
     //背景
     body_color: #f0f2f5,
-    item_color: #fff
+    item_color: #fff,
+    scroll_coilor: #68696b
   ),
   dark: (
     //字体
@@ -18,7 +19,8 @@ $themes: (
 
     //背景
     body_color: #242629,
-    item_color: #2f3131
+    item_color: #2f3131,
+    scroll_coilor: #656669
   )
 );
 //遍历主题map
@@ -43,20 +45,20 @@ $themes: (
 //获取背景颜色
 @mixin background_color($color) {
   @include themeify {
-    background-color: themed($color) !important;
+    background-color: themed($color);
   }
 }
 
 //获取字体颜色
 @mixin font_color($color) {
   @include themeify {
-    color: themed($color) !important;
+    color: themed($color);
   }
 }
 
 //获取边框颜色
 @mixin border_color($color) {
   @include themeify {
-    border-color: themed($color) !important;
+    border-color: themed($color);
   }
 }

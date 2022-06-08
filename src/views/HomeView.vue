@@ -78,9 +78,29 @@
 <script>
 import BannerComponent from '@/components/BannerComponent.vue'
 import SimpleCloak from '@/components/SimpleCloak.vue'
+// API
+import { getBlogDigest } from '@/api/blog.js'
 export default {
   name: 'HomeView',
-  components: { BannerComponent, SimpleCloak }
+  data() {
+    return {
+      blogDigests: []
+    }
+  },
+  components: { BannerComponent, SimpleCloak },
+  methods: {
+    async gainBlogDigest() {
+      try {
+        const result = await getBlogDigest()
+        this.blogDigests = result.data
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
+  mounted() {
+    this.gainBlogDigest()
+  }
 }
 </script>
 
@@ -91,11 +111,11 @@ $default_radius: 0.7rem;
   #main {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     margin: 20px auto 0;
 
     .home-aside {
-      min-width: 300px;
+      flex-shrink: 0;
+      width: 300px;
       box-sizing: border-box;
       margin-bottom: 20px;
       border-radius: $default_radius;
@@ -129,8 +149,8 @@ $default_radius: 0.7rem;
 
     .blogs {
       transition: all 0.3s ease;
-      width: 40vw;
-      min-width: 370px;
+      flex-shrink: 0;
+      width: 900px;
       box-sizing: border-box;
       margin: 0 0 20px 20px;
       padding: 20px;
@@ -172,10 +192,12 @@ $default_radius: 0.7rem;
   #home {
     #main {
       width: 94vw;
+      flex-wrap: wrap;
       .home-aside {
-        min-width: 370px;
+        width: 94vw;
       }
       .blogs {
+        width: 94vw;
         margin: 0 0 20px 0;
       }
     }

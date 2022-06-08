@@ -1,9 +1,9 @@
 <template>
-  <header id="header_container">
+  <header class="header_container" :class="{header_container_transparent: isOnTop && isHomePage}">
     <div class="header_left">
       <nav class="header_nav">
         <div class="nav_items" v-for="r in routes" :key="r.id">
-          <router-link :to="r.path" :class="{active: $route.fullPath === r.path}">{{r.title}}</router-link>
+          <router-link :to="r.path" :class="{active: $route.fullPath === r.path, is_transparent: isOnTop && isHomePage}">{{r.title}}</router-link>
         </div>
       </nav>
       <div class="search_input">
@@ -44,12 +44,16 @@ export default {
         { id: '006', path: '/friends', title: '朋友' }
       ],
       isMobile: document.documentElement.clientWidth < 720,
-      showAsideNav: false
+      showAsideNav: false,
+      isOnTop: true
     }
   },
   computed: {
     isDarkMode() {
       return this.$store.state.isDarkMode
+    },
+    isHomePage() {
+      return this.$route.fullPath === '/'
     }
   },
   methods: {
@@ -78,10 +82,16 @@ export default {
     }
   },
   created() {
-    console.log(this)
     window.addEventListener('resize', () => {
       const width = document.documentElement.clientWidth
       this.isMobile = width < 720
+    })
+    window.addEventListener('scroll', () => {
+      const height = document.documentElement.scrollTop || document.body.scrollTop
+      this.isOnTop = true
+      if (height > 100) {
+        this.isOnTop = false
+      }
     })
   },
   mounted() {
@@ -95,7 +105,7 @@ export default {
 $pcHeight: 60px;
 $mobileHeight: 50px;
 
-#header_container {
+.header_container {
   transition: all 0.3s ease;
   position: fixed;
   margin-bottom: $pcHeight;
@@ -142,11 +152,14 @@ $mobileHeight: 50px;
         }
         a {
           font-size: 14px;
-          @include font_color(font_color);
+          @include font_color('font_color');
           padding: 0 2px 4px;
           &:hover {
             border-bottom: 2px solid #04aa15;
           }
+        }
+        .is_transparent {
+          color: white !important;
         }
       }
     }
@@ -215,7 +228,7 @@ aside {
 }
 
 @media screen and (max-width: 720px) {
-  #header_container {
+  .header_container {
     margin-bottom: $mobileHeight;
     height: $mobileHeight;
     line-height: $mobileHeight;
@@ -249,5 +262,10 @@ aside {
 }
 .active {
   border-bottom: 2px solid #04aa15;
+}
+
+.header_container_transparent {
+  background-color: transparent !important;
+  color: white !important;
 }
 </style>
