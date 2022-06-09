@@ -6,3 +6,5 @@ const article = axios.create({
 })
 
 export const getArticleDigest = () => article({ url: '/digest', method: 'get' })
+
+export const getArticel = id => article({ url: `/gainArticle/${id}`, method: 'get' })
