@@ -3,7 +3,7 @@
     <div class="header_left">
       <nav class="header_nav">
         <div class="nav_items" v-for="r in routes" :key="r.id">
-          <router-link :to="r.path" :class="{active: $route.fullPath === r.path, is_transparent: isOnTop && isHomePage}">{{r.title}}</router-link>
+          <router-link :to="r.path" :class="{active: routeParentPath === r.path, is_transparent: isOnTop && isHomePage}">{{r.title}}</router-link>
         </div>
       </nav>
       <div class="search_input">
@@ -14,14 +14,15 @@
       </div>
     </div>
     <div class="header_right" v-if="isMobile" @click="handleAsideNav">
-      <img src="@/assets/icons/menu.svg">
+      <img src="@/assets/icons/menu.svg" v-if="!isDarkMode">
+      <img src="@/assets/icons/menu_dark.svg" v-else>
     </div>
     <!-- 移动端导航栏 -->
     <aside v-if="isMobile">
       <transition name="aside_nav_ani">
         <nav id="aside_nav" v-show="showAsideNav">
           <div class="aside_nav_items" v-for="r in routes" :key="r.id">
-            <router-link :to="r.path" :class="{active: $route.fullPath === r.path}">{{r.title}}</router-link>
+            <router-link :to="r.path" :class="{active: routeParentPath === r.path}">{{r.title}}</router-link>
           </div>
         </nav>
       </transition>
@@ -54,6 +55,9 @@ export default {
     },
     isHomePage() {
       return this.$route.fullPath === '/'
+    },
+    routeParentPath() {
+      return '/' + this.$route.fullPath.split('/')[1]
     }
   },
   methods: {
@@ -96,6 +100,7 @@ export default {
   },
   mounted() {
     this.changeColorTheme()
+    console.log(this)
   }
 }
 </script>

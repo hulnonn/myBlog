@@ -1,24 +1,29 @@
 # blog
 
 ## Project setup
+
 ```
-yarn install
+pnpm i
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
-yarn serve
+pnpm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
-yarn build
+pnpm run build
 ```
 
 ### Lints and fixes files
+
 ```
-yarn lint
+pnpm run lint
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
