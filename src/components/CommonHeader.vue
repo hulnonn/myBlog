@@ -100,7 +100,6 @@ export default {
   },
   mounted() {
     this.changeColorTheme()
-    // console.log(this)
   }
 }
 </script>
