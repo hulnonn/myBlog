@@ -100,7 +100,7 @@ export default {
   },
   mounted() {
     this.changeColorTheme()
-    console.log(this)
+    // console.log(this)
   }
 }
 </script>
@@ -113,7 +113,7 @@ $mobileHeight: 50px;
 .header_container {
   transition: all 0.3s ease;
   position: fixed;
-  margin-bottom: $pcHeight;
+  // margin-bottom: $pcHeight;
   display: flex;
   align-items: center;
   top: 0;

@@ -9,7 +9,10 @@
 import CommonHeader from '@/components/CommonHeader.vue'
 export default {
   name: 'App',
-  components: { CommonHeader }
+  components: { CommonHeader },
+  created() {
+    this.$store.dispatch('gainArticleDigest')
+  }
 }
 </script>
 

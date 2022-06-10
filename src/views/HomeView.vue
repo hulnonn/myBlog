@@ -34,7 +34,7 @@
             </div>
           </a>
         </div> -->
-        <div class="articles" v-for="d in articleDigests" :key="d.id">
+        <div class="articles" v-for="d in articleDigest" :key="d.id">
           <router-link :to="d.path">
             <div class="article">
               <h3>{{d.title}}</h3>
@@ -51,28 +51,13 @@
 <script>
 import BannerComponent from '@/components/BannerComponent.vue'
 import SimpleCloak from '@/components/SimpleCloak.vue'
-// API
-import { getArticleDigest } from '@/api/article.js'
 export default {
   name: 'HomeView',
-  data() {
-    return {
-      articleDigests: []
-    }
-  },
   components: { BannerComponent, SimpleCloak },
-  methods: {
-    async gainArticleDigest() {
-      try {
-        const result = await getArticleDigest()
-        this.articleDigests = result.data
-      } catch (error) {
-        console.log(error)
-      }
+  computed: {
+    articleDigest() {
+      return this.$store.state.articleDigest
     }
-  },
-  mounted() {
-    this.gainArticleDigest()
   }
 }
 </script>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+// import Article from '@/views/ArticleView/index.vue'
+// import GainArticle from '@/views/ArticleView/GainArticle.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -12,7 +13,16 @@ const routes = [
   {
     path: '/article',
     name: 'article',
-    component: () => import('@/views/ArticleView')
+    component: () => import('@/views/ArticleView'),
+    // component: Article,
+    children: [
+      {
+        path: 'gainArticle/:articleId?',
+        name: 'gainArticle',
+        component: () => import('@/views/ArticleView/GainArticle.vue'),
+        props: true
+      }
+    ]
   },
   {
     path: '/writing',
@@ -43,7 +53,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  // base: process.env.BASE_URL,
   routes
 })
 
