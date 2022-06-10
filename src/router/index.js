@@ -21,6 +21,12 @@ const routes = [
         name: 'gainArticle',
         component: () => import('@/views/ArticleView/GainArticle.vue'),
         props: true
+      },
+      {
+        path: 'digestList/:category?',
+        name: 'digestList',
+        component: () => import('@/views/ArticleView/DigestList.vue'),
+        props: true
       }
     ]
   },

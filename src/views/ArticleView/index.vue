@@ -15,11 +15,11 @@ export default {
   data() {
     return {
       navs: [
-        { id: '001', path: '/article/articleLst/html', title: 'HTML' },
-        { id: '002', path: '/article/articleLst/js', title: 'JavaScript' },
-        { id: '003', path: '/article/articleLst/css', title: 'Css' },
-        { id: '004', path: '/article/articleLst/vue', title: 'Vue' },
-        { id: '005', path: '/article/articleLst/other', title: '其它' }
+        { id: '001', path: '/article/digestList/html', title: 'HTML' },
+        { id: '002', path: '/article/digestList/js', title: 'JavaScript' },
+        { id: '003', path: '/article/digestList/css', title: 'Css' },
+        { id: '004', path: '/article/digestList/vue', title: 'Vue' },
+        { id: '005', path: '/article/digestList/other', title: '其它' }
       ]
     }
   },
