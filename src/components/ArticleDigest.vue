@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="digest-container">
     <div class="articles" v-for="d in digests" :key="d.id">
       <router-link :to="d.path">
         <div class="article">
@@ -30,7 +30,7 @@ $default_radius: 0.7rem;
 .articles {
   transition: all 0.3s ease;
   flex-shrink: 0;
-  width: 900px;
+  width: 750px;
   box-sizing: border-box;
   margin: 0 0 20px 20px;
   padding: 20px;

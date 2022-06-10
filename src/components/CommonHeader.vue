@@ -63,6 +63,7 @@ export default {
   methods: {
     handleAsideNav() {
       this.showAsideNav = !this.showAsideNav
+      this.$bus.$emit('handleMobile')
       // 给 window 绑定点击事件，可以在展开nav 的情况下点击屏幕隐藏nav
       if (window.onclick) {
         window.onclick = false
@@ -71,6 +72,7 @@ export default {
           window.onclick = () => {
             if (this.showAsideNav) {
               this.showAsideNav = false
+              this.$bus.$emit('handleMobile')
             }
             window.onclick = false
           }
@@ -112,6 +114,7 @@ $mobileHeight: 50px;
 .header_container {
   transition: all 0.3s ease;
   position: fixed;
+  z-index: 999;
   // margin-bottom: $pcHeight;
   display: flex;
   align-items: center;
@@ -203,7 +206,7 @@ aside {
   right: 0;
   top: $pcHeight;
   #aside_nav {
-    width: 20vw;
+    width: 30vw;
     @include background_color('body_color');
 
     .aside_nav_items {
