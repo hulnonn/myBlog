@@ -74,7 +74,7 @@ $default_radius: 0.7rem;
           width: 80px;
           height: 80px;
           border-radius: 80px;
-          background: url('@/assets/avatar.jpg') no-repeat center center/100% 100%;
+          background: url('@/assets/avatar.png') no-repeat center center/100% 100%;
         }
         .self-intro {
           display: flex;

@@ -6,19 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    [date-theme="dark"] .box {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+
+    [date-theme="light"] .box {
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+    }
+  </style>
 </head>
 
 <body>
-  <script>
-    const ooo = {
-      name: 'zs',
-      age: 18,
-      gender: '男'
-    }
-    for (const key in ooo) {
-      console.log(ooo[key]);
-    }
-  </script>
+  <div date-theme="dark">
+    <div class="box"></div>
+  </div>
 </body>
 
 </html>

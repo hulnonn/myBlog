@@ -1,7 +1,7 @@
 <template>
   <div class="writting-container">
     <div class="editor-container">
-      <mavon-editor v-model="article" />
+      <mavon-editor v-model="article" :tabSize="2" class="editor-item" />
     </div>
     <div class="digest-editor">
       <div class="input-items">
@@ -59,6 +59,10 @@ export default {
       this.digest.createTime = timeStr
       this.digest.id = this.digestLength.toString()
       this.digest.path = '/article/gainArticle/' + this.digestLength
+      if (this.tags === '') {
+        alert('请填写信息')
+        return
+      }
       const tags = this.tags.split(' ')
       tags.forEach(item => {
         this.digest.tags.push({ color: 'tag-green', title: item })
@@ -94,10 +98,21 @@ export default {
 <style lang="scss" scoped>
 .writting-container {
   margin-top: 60px;
-}
-@media (max-width: 720px) {
-  .writting-container {
-    margin-top: 50px;
+  .editor-container {
+    width: 1500px;
+    margin: 0 auto;
+    .editor-item {
+      width: 100%;
+      height: 700px;
+      z-index: 1;
+    }
+  }
+  @media (max-width: 720px) {
+    .writting-container {
+      margin-top: 50px;
+    }
   }
 }
+// ::v-deep .v-note-wrapper {
+// }
 </style>

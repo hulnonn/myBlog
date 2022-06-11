@@ -55,17 +55,29 @@ $default_radius: 0.7rem;
       padding: 3px 10px;
       border-radius: 10px;
       background-color: #222;
-      color: #ebebeb !important;
+      color: #fff;
       font-size: 12px;
     }
 
     .tag-green {
       background-color: #26d12f;
-      color: #fff !important;
     }
     .tag-yellow {
       background-color: #fff94c;
-      color: #200 !important;
+      color: #200;
+    }
+    .tag-purple {
+      background-color: #8e44ad;
+    }
+    .tag-blue {
+      background-color: #0284ff;
+    }
+    .tag-orange {
+      background-color: #ffc100;
+      color: #222;
+    }
+    .tag-red {
+      background-color: #ff3b3b;
     }
   }
 }
