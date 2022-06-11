@@ -21,6 +21,7 @@ specifiers:
   html-loader: ^3.1.0
   markdown-loader: ^8.0.0
   marked: ^4.0.16
+  mavon-editor: ^2.10.4
   sass: ^1.32.7
   sass-loader: ^12.0.0
   vue: ^2.6.14
@@ -36,6 +37,7 @@ dependencies:
   html-loader: 3.1.0
   markdown-loader: 8.0.0
   marked: 4.0.16
+  mavon-editor: 2.10.4
   vue: 2.6.14
   vue-router: 3.5.4
   vuex: 3.6.2_vue@2.6.14
@@ -3189,6 +3191,10 @@ packages:
     hasBin: true
     dev: true
 
+  /cssfilter/0.0.10:
+    resolution: {integrity: sha512-FAaLDaplstoRsDR8XGYH51znUN0UY7nMc6Z9/fvE8EXGwvJE9hu7W2vHwx1+bd6gCYnln9nLbzxFTrcO9YQDZw==}
+    dev: false
+
   /cssnano-preset-default/5.2.9_postcss@8.4.14:
     resolution: {integrity: sha512-/4qcQcAfFEg+gnXE5NxKmYJ9JcT+8S5SDuJCLYMDN8sM/ymZ+lgLXq5+ohx/7V2brUCkgW2OaoCzOdAN0zvhGw==}
     engines: {node: ^10 || ^12 || >=14.0}
@@ -5036,6 +5042,12 @@ packages:
     resolution: {integrity: sha512-wahonIQ5Jnyatt2fn8KqF/nIqZM8mh3oRu2+l5EANGMhu6RFjiSG52QNE2eWzFMI94HqYSgN184NurgNG6CztA==}
     engines: {node: '>= 12'}
     hasBin: true
+    dev: false
+
+  /mavon-editor/2.10.4:
+    resolution: {integrity: sha512-CFsBLkgt/KZBDg+SJYe2fyYv4zClY149PiwpH0rDAiiP4ae1XNs0GC8nBsoTeipsHcebDLN1QMkt3bUsnMDjQw==}
+    dependencies:
+      xss: 1.0.13
     dev: false
 
   /mdn-data/2.0.14:
@@ -7375,6 +7387,15 @@ packages:
       utf-8-validate:
         optional: true
     dev: true
+
+  /xss/1.0.13:
+    resolution: {integrity: sha512-clu7dxTm1e8Mo5fz3n/oW3UCXBfV89xZ72jM8yzo1vR/pIS0w3sgB3XV2H8Vm6zfGnHL0FzvLJPJEBhd86/z4Q==}
+    engines: {node: '>= 0.10.0'}
+    hasBin: true
+    dependencies:
+      commander: 2.20.3
+      cssfilter: 0.0.10
+    dev: false
 
   /y18n/5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}

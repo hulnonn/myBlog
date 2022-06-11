@@ -8,3 +8,7 @@ const article = axios.create({
 export const getArticleDigest = () => article({ url: '/digest', method: 'get' })
 
 export const getArticel = id => article({ url: `/gainArticle/${id}`, method: 'get' })
+
+export const postArticleDigest = data => article({ url: '/addArticleDegest', method: 'post', data })
+
+export const postArticle = (post, title) => article({ url: '/addArticle', method: 'post', data: { post }, params: { title } })
