@@ -95,6 +95,7 @@ export default {
       left: auto;
       right: 0;
       .nav-items {
+        border: none;
         &:first-child {
           border-top: 1px solid rgba($color: #aaa, $alpha: 0.5);
         }

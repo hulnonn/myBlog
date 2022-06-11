@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/article',
     name: 'article',
-    redirect: '/article/gainArticle/1',
+    redirect: '/article/digestList/other',
     component: () => import('@/views/ArticleView'),
     children: [
       {

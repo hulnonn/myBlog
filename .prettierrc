@@ -8,7 +8,7 @@
   "bracketSpacing": true,
   "arrowParens": "avoid",
   "htmlWhitespaceSensitivity": "ignore",
-  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": false,
   "files.insertFinalNewline": true,
   "useTabs": false,
   "endOfLine": "auto",
