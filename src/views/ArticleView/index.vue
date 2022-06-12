@@ -1,12 +1,10 @@
 <template>
   <div class="article-container">
-    <transition name="aside_nav_ani">
-      <aside class="aside-nav" v-show="showAside">
-        <div class="nav-items" v-for="nav in navs" :key="nav.id">
-          <router-link :to="nav.path">{{nav.title}}</router-link>
-        </div>
-      </aside>
-    </transition>
+    <aside class="aside-nav">
+      <div class="nav-items" v-for="nav in navs" :key="nav.id">
+        <router-link :to="nav.path">{{nav.title}}</router-link>
+      </div>
+    </aside>
     <router-view class="main-container"></router-view>
   </div>
 </template>
@@ -40,9 +38,6 @@ export default {
     if (document.documentElement.clientWidth > 720) {
       this.showAside = true
     }
-  },
-  mounted() {
-    this.$bus.$on('handleMobile', this.handleMobile)
   }
 }
 </script>
@@ -89,43 +84,12 @@ export default {
 @media (max-width: 720px) {
   .article-container {
     margin-top: 50px;
-
     .aside-nav {
-      top: 350px;
-      left: auto;
-      right: 0;
-      .nav-items {
-        border: none;
-        &:first-child {
-          border-top: 1px solid rgba($color: #aaa, $alpha: 0.5);
-        }
-        a {
-          width: 30vw;
-        }
-      }
+      display: none;
     }
     .main-container {
       padding: 0;
     }
   }
-}
-
-// 动画
-.aside_nav_ani-enter-active,
-.aside_nav_ani-leave-active {
-  transition: all 0.3s ease !important;
-}
-
-.aside_nav_ani-enter {
-  transform: translateX(100%) !important;
-}
-.aside_nav_ani-enter-to {
-  transform: translateX(0%) !important;
-}
-.aside_nav_ani-leave {
-  transform: translateX(0);
-}
-.aside_nav_ani-leave-to {
-  transform: translateX(100%);
 }
 </style>

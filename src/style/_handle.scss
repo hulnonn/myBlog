@@ -56,9 +56,8 @@ $themes: (
   }
 }
 
-//获取边框颜色
-@mixin border_color($color) {
+@mixin background_important($color) {
   @include themeify {
-    border-color: themed($color);
+    background-color: themed($color) !important;
   }
 }

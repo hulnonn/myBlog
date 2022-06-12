@@ -28,8 +28,8 @@ export default {
     },
     time() {
       const date = this.date
-      const arr = ['一', '二', '三', '四', '五', '六', '日']
-      const xingqi = arr[date.getDay() - 1]
+      const arr = ['日', '一', '二', '三', '四', '五', '六']
+      const xingqi = arr[date.getDay()]
       const hour = date.getHours()
       const minute = date.getMinutes() >= 10 ? date.getMinutes() : '0' + date.getMinutes()
       const second = date.getSeconds()

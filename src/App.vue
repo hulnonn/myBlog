@@ -20,7 +20,7 @@ export default {
 @import '@/style/_handle.scss';
 body {
   transition: all 0.3s ease;
-  height: 2000px;
+  // height: 2000px;
   @include background_color('body_color');
   &::-webkit-scrollbar {
     width: 12px !important;

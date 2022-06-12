@@ -18,15 +18,23 @@
       <img src="@/assets/icons/menu_dark.svg" v-else>
     </div>
     <!-- 移动端导航栏 -->
-    <aside v-if="isMobile">
-      <transition name="aside_nav_ani">
-        <nav id="aside_nav" v-show="showAsideNav">
+    <transition name="aside_nav_ani">
+      <aside v-if="showAsideNav">
+        <nav class="aside_nav" v-if="isMobile">
           <div class="aside_nav_items" v-for="r in routes" :key="r.id">
             <router-link :to="r.path" :class="{active: routeParentPath === r.path}">{{r.title}}</router-link>
           </div>
+          <!-- <div class="aside_nav_items" v-for="n in articleNav" :key="n.id" v-if=>
+            <router-link :to="n.path">{{r.title}}</router-link>
+          </div> -->
         </nav>
-      </transition>
-    </aside>
+        <nav class="aside_nav" v-if="routeParentPath === '/article'">
+          <div class="aside_nav_items" v-for="n in articleNav" :key="n.id">
+            <router-link :to="n.path">{{n.title}}</router-link>
+          </div>
+        </nav>
+      </aside>
+    </transition>
   </header>
 </template>
 
@@ -43,6 +51,13 @@ export default {
         { id: '004', path: '/life', title: '生活' },
         { id: '005', path: '/trip', title: '旅程' },
         { id: '006', path: '/friends', title: '朋友' }
+      ],
+      articleNav: [
+        { id: '0001', path: '/article/digestList/html', title: 'HTML' },
+        { id: '0002', path: '/article/digestList/js', title: 'JavaScript' },
+        { id: '0003', path: '/article/digestList/css', title: 'Css' },
+        { id: '0004', path: '/article/digestList/vue', title: 'Vue' },
+        { id: '0005', path: '/article/digestList/other', title: '其它' }
       ],
       isMobile: document.documentElement.clientWidth < 720,
       showAsideNav: false,
@@ -63,7 +78,6 @@ export default {
   methods: {
     handleAsideNav() {
       this.showAsideNav = !this.showAsideNav
-      this.$bus.$emit('handleMobile')
       // 给 window 绑定点击事件，可以在展开nav 的情况下点击屏幕隐藏nav
       if (window.onclick) {
         window.onclick = false
@@ -72,7 +86,6 @@ export default {
           window.onclick = () => {
             if (this.showAsideNav) {
               this.showAsideNav = false
-              this.$bus.$emit('handleMobile')
             }
             window.onclick = false
           }
@@ -205,7 +218,8 @@ aside {
   position: absolute;
   right: 0;
   top: $pcHeight;
-  #aside_nav {
+
+  .aside_nav {
     width: 30vw;
     @include background_color('body_color');
 
