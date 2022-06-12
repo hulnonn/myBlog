@@ -1,30 +1,30 @@
 <template>
   <div class="writting-container">
     <div class="editor-container">
-      <v-md-editor v-model="article" height="800px"></v-md-editor>
-      <div class="digest-editor">
-        <div class="input-items">
-          <label for="title">标题：</label>
-          <input type="text" id="title" v-model="digest.title" class="input">
-        </div>
-        <div class="input-items">
-          <label for="category">类别：</label>
-          <select name="category-select" id="category" v-model="digest.category">
-            <option value="">文章类别</option>
-            <option value="html">HTML</option>
-            <option value="js">JavaScript</option>
-            <option value="css">CSS</option>
-            <option value="vue">Vue</option>
-            <option value="other">其它</option>
-          </select>
-        </div>
-        <div class="input-items">
-          <label for="tag">标签：</label>
-          <input type="text" id="tag" v-model="tags" class="input">
-        </div>
-      </div>
-      <button @click="postDigest">发表文章</button>
+      <mavon-editor v-model="article" :tabSize="2" class="editor-item" />
     </div>
+    <div class="digest-editor">
+      <div class="input-items">
+        <label for="title">标题：</label>
+        <input type="text" id="title" v-model="digest.title">
+      </div>
+      <div class="input-items">
+        <label for="category">类别：</label>
+        <select name="category-select" id="category" v-model="digest.category">
+          <option value="">文章类别</option>
+          <option value="html">HTML</option>
+          <option value="js">JavaScript</option>
+          <option value="css">CSS</option>
+          <option value="vue">Vue</option>
+          <option value="other">其它</option>
+        </select>
+      </div>
+      <div class="input-items">
+        <label for="tag">标签：</label>
+        <input type="text" id="tag" v-model="tags">
+      </div>
+    </div>
+    <button @click="postDigest">click</button>
   </div>
 </template>
 
@@ -96,10 +96,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/style/handle.scss';
 .writting-container {
   margin-top: 60px;
-  overflow-x: clip;
   .editor-container {
     width: 1500px;
     margin: 0 auto;
@@ -108,22 +106,6 @@ export default {
       height: 700px;
       z-index: 1;
     }
-    .digest-editor {
-      margin-top: 20px;
-      .input-items {
-        @include font_color('font_color');
-        font-size: 18px;
-
-        .input {
-          outline-style: none;
-          border: 1px solid #ccc;
-          border-radius: 3px;
-          padding: 5px 10px;
-          width: 300px;
-          font-size: 16px;
-        }
-      }
-    }
   }
   @media (max-width: 720px) {
     .writting-container {
@@ -131,4 +113,6 @@ export default {
     }
   }
 }
+// ::v-deep .v-note-wrapper {
+// }
 </style>

@@ -4,6 +4,7 @@ import '@/style/index.css'
 import '@/style/reset.css'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import '@/import/VMDeditor.js'
 import router from './router'
 import store from './store'
 Vue.config.productionTip = false
