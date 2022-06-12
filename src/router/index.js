@@ -33,7 +33,16 @@ const routes = [
   {
     path: '/writing',
     name: 'writing',
-    component: () => import('@/views/WritingView')
+    component: () => import('@/views/WritingView'),
+    beforeEnter: (to, from, next) => {
+      const verifyWord = sessionStorage.getItem('verifyWord')
+      if (verifyWord === '前端开发') {
+        next()
+        return undefined
+      }
+      alert('请先输入口令')
+      next('/verify')
+    }
   },
   {
     path: '/tag',
@@ -54,6 +63,11 @@ const routes = [
     path: '/friends',
     name: 'friends',
     component: () => import('@/views/MyFriends')
+  },
+  {
+    path: '/verify',
+    name: 'verify',
+    component: () => import('@/components/WritingVerify')
   }
 ]
 

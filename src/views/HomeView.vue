@@ -7,14 +7,15 @@
           <div class="avatar-container"></div>
           <div class="self-intro">
             <h3>前端工程师</h3>
-            <p>从事前端开发一年了</p>
+            <p style="text-align: center">邮箱 <a href="mailto:hulnann@163.com">hulnann@163.com</a></p>
+            <p style="text-align: center">联系电话 <a href="tel:18373351542">18373351542</a></p>
           </div>
         </div>
         <div class="objectives home-aside-items">
           <h3 style="margin-bottom: 10px">学习目标：</h3>
-          <p class="object-time" style="margin-bottom: 10px">学习 Vue 源码</p>
-          <p class="object-time" style="margin-bottom: 10px">学会 React</p>
-          <p class="object-time" style="margin-bottom: 10px">使用 Koa 搭建后台服务器</p>
+          <p class="object-time" style="margin-bottom: 10px">了解 Vue 源码</p>
+          <p class="object-time" style="margin-bottom: 10px">学习 React</p>
+          <p class="object-time" style="margin-bottom: 10px"></p>
         </div>
         <div class="clock home-aside-items">
           <SimpleCloak></SimpleCloak>
@@ -73,8 +74,9 @@ $default_radius: 0.7rem;
         .avatar-container {
           width: 80px;
           height: 80px;
+          margin: 10px 0;
           border-radius: 80px;
-          background: url('@/assets/avatar.png') no-repeat center center/100% 100%;
+          background: url('@/assets/run.gif') no-repeat center center/100% 100%;
         }
         .self-intro {
           display: flex;

@@ -124,7 +124,7 @@ export default {
 }
 
 .v-note-wrapper .v-note-op {
-  background-color: #000 !important;
+  background-color: #282c34 !important;
   border: none !important;
 }
 .v-note-wrapper .v-note-panel .v-note-navigation-wrapper.transition {

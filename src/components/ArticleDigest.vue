@@ -53,31 +53,28 @@ $default_radius: 0.7rem;
       display: inline;
       margin: 0 5px;
       padding: 3px 10px;
-      border-radius: 10px;
+      border-radius: 4px;
       background-color: #222;
       color: #fff;
       font-size: 12px;
     }
 
     .tag-green {
-      background-color: #26d12f;
+      background-color: #26d12f; // Vue
     }
     .tag-yellow {
-      background-color: #fff94c;
+      background-color: #fff94c; // CSS
       color: #200;
     }
-    .tag-purple {
-      background-color: #8e44ad;
-    }
     .tag-blue {
-      background-color: #0284ff;
+      background-color: #0284ff; // HTML
     }
     .tag-orange {
-      background-color: #ffc100;
+      background-color: #ffc100; // JavaScript
       color: #222;
     }
     .tag-red {
-      background-color: #ff3b3b;
+      background-color: #ff7979; // 其它
     }
   }
 }

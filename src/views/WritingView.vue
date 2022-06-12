@@ -35,7 +35,7 @@ export default {
   name: 'WritingView',
   data() {
     return {
-      article: '# 我是一级标题',
+      article: '',
       digest: {
         title: '',
         createTime: '',
@@ -54,31 +54,43 @@ export default {
   },
   methods: {
     async postDigest() {
+      // 判断， 如果文章果断或者没有填写文章信息则直接返回
+      if (this.tags === '') {
+        alert('请填写信息')
+        return undefined
+      }
+      if (this.article.length < 150) {
+        alert('文章过短')
+        return undefined
+      }
+      // 获取创建文章的时间
       const time = new Date()
       const timeStr = `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`
       this.digest.createTime = timeStr
+      // 新文章的id就是新摘要的长度
       this.digest.id = this.digestLength.toString()
       this.digest.path = '/article/gainArticle/' + this.digestLength
-      if (this.tags === '') {
-        alert('请填写信息')
-        return
-      }
       const tags = this.tags.split(' ')
       tags.forEach(item => {
-        this.digest.tags.push({ color: 'tag-green', title: item })
+        this.digest.tags.push({ color: this.createClassName(item), title: item })
       })
-      for (const key in this.digest) {
-        if (this.digest[key] === '') {
-          alert('请填写信息')
-          return undefined
-        }
-      }
+      // 发送请求，参数为文章和文章摘要
       try {
         const { data } = await postArticle(this.article, this.digest.title)
         if (data.code === 200) {
           const { data: data2 } = await postArticleDigest(this.digest)
           if (data2.code === 200) {
             this.$store.dispatch('gainArticleDigest')
+            this.article = ''
+            this.tags = ''
+            this.digest = {
+              title: '',
+              createTime: '',
+              category: '',
+              id: '',
+              path: '',
+              tags: []
+            }
             alert('文章发布成功')
           } else {
             throw data2.message
@@ -90,6 +102,33 @@ export default {
         alert(error.message)
         return undefined
       }
+    },
+    createClassName(tag) {
+      let className
+      switch (tag) {
+        case 'Vue':
+        case 'vue':
+          className = 'tag-green'
+          break
+        case 'CSS':
+        case 'css':
+          className = 'tag-yellow'
+          break
+        case 'JavaScript':
+        case 'javascript':
+        case 'Javascript':
+        case 'js':
+          className = 'tag-orange'
+          break
+        case 'html':
+        case 'HTML':
+          className = 'tag-blue'
+          break
+        default:
+          className = 'tag-red'
+          break
+      }
+      return className
     }
   }
 }

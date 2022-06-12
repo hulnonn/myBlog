@@ -1,7 +1,9 @@
 <template>
   <section id="banner-container">
     <div class="slogan">
-      <div class="avatar"></div>
+      <div class="avatar">
+        <img src="@/assets/icons/html.svg">
+      </div>
       <div class="words">
         <h1>欢迎来到我的博客</h1>
         <h3>Have a good time! Thanks</h3>
@@ -28,10 +30,16 @@ export default {
     display: flex;
     justify-content: space-between;
     .avatar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100px;
       height: 100px;
       border-radius: 50px;
-      background: url('@/assets/run.gif') no-repeat;
+      background: url('https://i.gifer.com/82em.gif') no-repeat center center/110%;
+      img {
+        width: 85%;
+      }
     }
     .words {
       display: flex;
