@@ -6,6 +6,7 @@
         <div class="input-items">
           <label for="title">标题：</label>
           <input type="text" id="title" v-model="digest.title" class="input">
+          <button @click="postDigest">发表文章</button>
         </div>
         <div class="input-items">
           <label for="category">类别：</label>
@@ -20,10 +21,13 @@
         </div>
         <div class="input-items">
           <label for="tag">标签：</label>
-          <input type="text" id="tag" v-model="tags" class="input">
+          <input type="text" id="tag" v-model="tags" class="input" placeholder="html, js, css, vue以及其它, 用空格分隔">
+        </div>
+        <div class="input-items">
+          <label for="keywords">关键字：</label>
+          <input type="text" id="keyword" v-model="digest.keywords" class="input">
         </div>
       </div>
-      <button @click="postDigest">发表文章</button>
     </div>
   </div>
 </template>
@@ -42,7 +46,8 @@ export default {
         category: '',
         id: '',
         path: '',
-        tags: []
+        tags: [],
+        keywords: ''
       },
       tags: ''
     }
@@ -55,8 +60,8 @@ export default {
   methods: {
     async postDigest() {
       // 判断， 如果文章果断或者没有填写文章信息则直接返回
-      if (this.tags === '') {
-        alert('请填写信息')
+      if (this.tags === '' || this.digest.keywords === '') {
+        alert('文章信息必填')
         return undefined
       }
       if (this.article.length < 150) {
@@ -89,7 +94,8 @@ export default {
               category: '',
               id: '',
               path: '',
-              tags: []
+              tags: [],
+              keywords: ''
             }
             alert('文章发布成功')
           } else {
@@ -144,7 +150,7 @@ export default {
     margin: 0 auto;
     .editor-item {
       width: 100%;
-      height: 700px;
+      height: 650px;
       z-index: 1;
     }
     .digest-editor {

@@ -7,7 +7,7 @@
         </div>
       </nav>
       <div class="search_input">
-        <input type="text">
+        <input type="text" placeholder="请输入关键字" v-model="searchKeyword" @keydown.enter="search">
       </div>
       <div class="dark_mode_switch" @click="changeColorTheme">
         <img src="@/assets/icons/moon.svg" ref="themeIcon">
@@ -47,7 +47,7 @@ export default {
         { id: '000', path: '/', title: '首页' },
         { id: '003', path: '/article', title: '文章' },
         { id: '001', path: '/writing', title: '写作' },
-        { id: '002', path: '/tag', title: '标签' },
+        { id: '002', path: '/search', title: '搜索' },
         { id: '004', path: '/life', title: '生活' },
         { id: '005', path: '/trip', title: '旅程' },
         { id: '006', path: '/friends', title: '朋友' }
@@ -61,7 +61,8 @@ export default {
       ],
       isMobile: document.documentElement.clientWidth < 720,
       showAsideNav: false,
-      isOnTop: true
+      isOnTop: true,
+      searchKeyword: ''
     }
   },
   computed: {
@@ -98,6 +99,14 @@ export default {
       const src = this.isDarkMode ? require('@/assets/icons/moon.svg') : require('@/assets/icons/sun.svg')
       this.$refs.themeIcon.src = src
       document.documentElement.setAttribute('data-theme', type)
+    },
+    search() {
+      if (this.searchKeyword === '') {
+        alert('请输入内容')
+        return undefined
+      }
+      this.$router.push('/search/' + this.searchKeyword)
+      this.searchKeyword = ''
     }
   },
   created() {

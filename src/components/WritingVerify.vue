@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="input-container">
-      <input type="text" @keyup.enter="verify" v-model="verifyWord">
+      <input type="text" @keyup.enter="verify" v-model="verifyWord" id="input" />
       <p>输入口令按回车前往写作页</p>
     </div>
   </div>
@@ -26,6 +26,11 @@ export default {
       this.verifyWord = ''
       alert('口令错误')
     }
+  },
+  mounted() {
+    // this.$nextTick(() => {
+    document.getElementById('input').focus()
+    // })
   }
 }
 </script>

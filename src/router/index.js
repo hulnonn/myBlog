@@ -45,9 +45,10 @@ const routes = [
     }
   },
   {
-    path: '/tag',
-    name: 'tag',
-    component: () => import('@/views/TagView')
+    path: '/search/:keyword?',
+    name: 'search',
+    component: () => import('@/views/SearchView'),
+    props: true
   },
   {
     path: '/life',
