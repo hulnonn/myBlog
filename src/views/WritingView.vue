@@ -1,7 +1,7 @@
 <template>
   <div class="writting-container">
     <div class="editor-container">
-      <v-md-editor v-model="article" height="800px"></v-md-editor>
+      <v-md-editor v-model="article" height="700px" :default-show-toc="true"></v-md-editor>
       <div class="digest-editor">
         <div class="input-items">
           <label for="title">标题：</label>
@@ -170,10 +170,8 @@ export default {
       }
     }
   }
-  @media (max-width: 720px) {
-    .writting-container {
-      margin-top: 50px;
-    }
-  }
+}
+::v-deep .v-md-textarea-editor pre {
+  font-size: 18px !important;
 }
 </style>

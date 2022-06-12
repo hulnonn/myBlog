@@ -35,6 +35,10 @@ const routes = [
     name: 'writing',
     component: () => import('@/views/WritingView'),
     beforeEnter: (to, from, next) => {
+      if (screen.width < 1500) {
+        alert('编辑页仅支持屏幕分辨率在 1500px 以上的设备')
+        return undefined
+      }
       const verifyWord = sessionStorage.getItem('verifyWord')
       if (verifyWord === '前端开发') {
         next()

@@ -1,13 +1,11 @@
 <template>
   <div class="gain-article">
     <div class="markdown">
-      <mavon-editor v-model="article" :tabSize="2" class="editor-item" :toolbars=toolbars codeStyle="atom-one-dark" :autofocus="false" />
+      <mavon-editor v-model="article" :tabSize="2" class="editor-item" :toolbars=toolbars codeStyle="github-dark" :autofocus="false" />
     </div>
   </div>
 </template>
 <script>
-// import '@/style/github-markdown-dark.css'
-// import '@/style/a11y-dark.css'
 // api
 import { getArticel } from '@/api/article.js'
 export default {
