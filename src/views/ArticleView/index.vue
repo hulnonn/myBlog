@@ -49,6 +49,7 @@ export default {
   margin-top: 60px;
 
   .aside-nav {
+    transition: all 0.3s ease;
     position: fixed;
     @include background_color('body_color');
     z-index: 2;

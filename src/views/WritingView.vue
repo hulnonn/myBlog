@@ -6,7 +6,8 @@
         <div class="input-items">
           <label for="title">标题：</label>
           <input type="text" id="title" v-model="digest.title" class="input">
-          <button @click="postDigest">发表文章</button>
+          <button @click="postUpdateArticle" v-if="articleId">更新文章</button>
+          <button @click="postDigest" v-else>发表文章</button>
         </div>
         <div class="input-items">
           <label for="category">类别：</label>
@@ -34,7 +35,7 @@
 
 <script>
 // api
-import { postArticleDigest, postArticle } from '@/api/article.js'
+import { getArticel, updateArticle, postArticleDigest, postArticle } from '@/api/article.js'
 export default {
   name: 'WritingView',
   data() {
@@ -52,15 +53,21 @@ export default {
       tags: ''
     }
   },
+  props: {
+    articleId: String
+  },
   computed: {
+    articleDigest() {
+      return this.$store.state.articleDigest || []
+    },
     digestLength() {
-      return this.$store.state.articleDigest.length + 1 || 0
+      return this.articleDigest.length + 1 || 0
     }
   },
   methods: {
     async postDigest() {
       // 判断， 如果文章果断或者没有填写文章信息则直接返回
-      if (this.tags === '' || this.digest.keywords === '') {
+      if (this.tags === '' || this.digest.keywords === '' || this.digest.title === '') {
         alert('文章信息必填')
         return undefined
       }
@@ -130,12 +137,72 @@ export default {
         case 'HTML':
           className = 'tag-blue'
           break
+        case '置顶':
+          className = undefined
+          break
         default:
           className = 'tag-red'
           break
       }
       return className
+    },
+    async initializeArticle() {
+      if (!this.articleId) {
+        return undefined
+      }
+      this.digest = this.articleDigest.find(item => item.id === this.articleId)
+      this.digest.tags.forEach((item, index, array) => {
+        this.tags += item.title
+        if (index < array.length - 1) {
+          this.tags += ' '
+        }
+      })
+      this.digest.tags = []
+      try {
+        const result = await getArticel(this.articleId)
+        this.article = result.data
+      } catch (error) {
+        alert('获取文章失败' + error.message)
+      }
+    },
+    async postUpdateArticle() {
+      // 判断， 如果文章果断或者没有填写文章信息则直接返回
+      if (this.tags === '' || this.digest.keywords === '' || this.digest.title === '') {
+        alert('文章信息必填')
+        return undefined
+      }
+      if (this.article.length < 150) {
+        alert('文章过短')
+        return undefined
+      }
+      const tags = this.tags.split(' ')
+      tags.forEach(item => {
+        this.digest.tags.push({ color: this.createClassName(item), title: item })
+      })
+      try {
+        const { data } = await updateArticle(this.article, this.digest, this.articleId)
+        if (data.code !== 200) {
+          throw data
+        }
+        this.article = ''
+        this.tags = ''
+        this.digest = {
+          title: '',
+          createTime: '',
+          category: '',
+          id: '',
+          path: '',
+          tags: [],
+          keywords: ''
+        }
+        alert(data.message)
+      } catch (error) {
+        alert(error.message)
+      }
     }
+  },
+  created() {
+    this.initializeArticle()
   }
 }
 </script>
@@ -171,7 +238,8 @@ export default {
     }
   }
 }
-::v-deep .v-md-textarea-editor pre {
+::v-deep .v-md-textarea-editor pre,
+::v-deep .v-md-textarea-editor textarea {
   font-size: 18px !important;
 }
 </style>

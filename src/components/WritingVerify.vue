@@ -15,11 +15,18 @@ export default {
       verifyWord: ''
     }
   },
+  props: {
+    articleId: String
+  },
   methods: {
     verify() {
       if (this.verifyWord === '前端开发') {
         sessionStorage.setItem('verifyWord', '前端开发')
-        this.$router.replace('/writing')
+        if (this.articleId) {
+          this.$router.replace('/writing/' + this.articleId)
+        } else {
+          this.$router.replace('/writing')
+        }
         this.verifyWord = ''
         return undefined
       }

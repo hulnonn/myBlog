@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Article from '@/views/ArticleView/index.vue'
-// import GainArticle from '@/views/ArticleView/GainArticle.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -31,9 +29,10 @@ const routes = [
     ]
   },
   {
-    path: '/writing',
+    path: '/writing/:articleId?',
     name: 'writing',
     component: () => import('@/views/WritingView'),
+    props: true,
     beforeEnter: (to, from, next) => {
       if (screen.width < 1500) {
         alert('编辑页仅支持屏幕分辨率在 1500px 以上的设备')
@@ -70,9 +69,10 @@ const routes = [
     component: () => import('@/views/MyFriends')
   },
   {
-    path: '/verify',
+    path: '/verify/:articleId?',
     name: 'verify',
-    component: () => import('@/components/WritingVerify')
+    component: () => import('@/components/WritingVerify'),
+    props: true
   }
 ]
 
